@@ -30,4 +30,10 @@ class Piece {
     this.y = p.y;
   }
 
+  move(p) {  
+    this.x = p.x;  
+    this.y = p.y;
+    this.shape = p.shape;
+  }
+  
 }
