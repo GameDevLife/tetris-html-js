@@ -10,7 +10,7 @@ class Board {
       {length: ROWS}, () => Array(COLS).fill(0)
     );
   }
-  
+
   rotate(piece) {  
     // Clone with JSON
     let p = JSON.parse(JSON.stringify(piece));  
@@ -28,5 +28,23 @@ class Board {
  
     return p;  
   }
+
+  isInsideWalls(x, y) {
+    return  (
+      x >= 0 &&   // Left wall
+      x < COLS && // Right wall
+      y < ROWS // Floor
+    )
+  }
+
+  valid(p) {
+    return p.shape.every((row, dy) => {
+      return row.every((value, dx) =>
+        value === 0 || 
+        this.isInsideWalls(p.x + dx, p.y + dy)
+      );
+    });
+  }
+
 }
 
